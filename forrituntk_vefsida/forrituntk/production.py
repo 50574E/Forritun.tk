@@ -1,4 +1,4 @@
-from forrituntk_vefsida.forrituntk.base import *
+from .base import *
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
