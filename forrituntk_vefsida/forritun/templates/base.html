@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <title>Forritun.tk</title>
-    <link rel='stylesheet' type='text/css' href='{{ STATIC_URL }}indexstyle.css'>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-  <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+<head>
+	<meta charset="utf-8">
+	<title>Forritun.tk</title>
+	<link rel="stylesheet" href="{{ STATIC_URL }}style.css">
+</head>
+<body>
+	<div id="content">
+	{% block content %}{% endblock %}
+	</div>
 </body>
 </html>
