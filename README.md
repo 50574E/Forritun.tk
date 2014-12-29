@@ -1,7 +1,11 @@
 Forritun.tk
 ===========
 
-Vefsíða sem tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama að tala um forritun / forrita.
+Vefsíða sem tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama að tala um forritun / forrita. Spjallborðið er eins og er eini parturinn af síðunni sem er kominn í loftið en það má nálgast [hér](http://discourse.forritun.tk).
+
+Liðlagningar
+------------
+Öll þróunarumræða mun fara fram [þar](http://discourse.forritun.tk) þannig fyrir þá sem hafa áhuga á að taka þátt í þróun á síðunni endilega kíkið á [aðalþráðin](http://discourse.forritun.tk/t/throun-a-vefsidunni/15/2). Aðrar leiðir til að hafa samband eru gegnum github, [facebook](http://www.facebook.com/forritun.tk) eða með því að senda email á forritun.tk@gmail.com.
 
 Uppsetning
 ==========
