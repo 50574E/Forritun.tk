@@ -7,10 +7,12 @@ INSTALLED_APPS += (
     # production-only apps
 )
 
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'forrituntk',
+        'NAME': 'django',
         'USER': os.environ['DATABASE_USER'],
         'PASSWORD': os.environ['DATABASE_PASSWORD'],
         'HOST': 'localhost',
