@@ -7,7 +7,7 @@ from django.template import RequestContext
 
 def index(request):
     if request.user.is_authenticated():
-        return render(request, 'skradurInn.html')
+        return render(request, 'loggedIn.html')
     else:
         return render(request, 'index.html')
 

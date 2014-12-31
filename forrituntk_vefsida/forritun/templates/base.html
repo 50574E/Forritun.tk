@@ -2,11 +2,19 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Forritun.tk er vefsíða fyrir reynda og óreynda forritara.">
+	<meta name="keywords" content="Forritun">
+	<meta property="og:title" content="Forritun.tk">
+	<meta property="og:site_name" content="Forritun.tk">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://forritun.tk">
+	<meta property="og:description" content="Forritun.tk er vefsíða fyrir reynda og óreynda forritara.">
 	<title>Forritun.tk</title>
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}style.css">
 </head>
 <body>
-	<div id="content">
+	<div class="wrapper">
 	{% block content %}{% endblock %}
 	</div>
 </body>

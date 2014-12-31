@@ -1,17 +1,18 @@
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {font: 16px/1.5rem sans-serif;}
+.wrapper {max-width: 1200px; width: 100%; margin: 0 auto;}
+h1,h2,h3,h4,h5,h6,p,li,iframe {margin: 1rem;}
+h1 {font-size: 2rem;}
+h2,h3 {font-size: 1.6rem;}
+h4 {font-size: 1.2rem}
+h5,h6,p {font-size: 1rem}
 
-a {
-  text-decoration: none;
-  color: #2062b8;
-}
+a {text-decoration: none; color: #2062b8;}
+.login {float: right;}
+.login a {padding: 0 0.25rem;}
+.login a:first-child {border-right: solid black 1px;}
 
-#login {
-  float: right;
-}
+iframe.fbLike {border:none; overflow:hidden; height:21px;}
 
 /*
 a:link {
