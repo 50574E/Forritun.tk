@@ -1,7 +1,8 @@
 a {
   text-decoration: none;
+  color: #2062b8
 }
-
+/*
 a:link {
   color: #2062b8;
 }
@@ -9,3 +10,4 @@ a:link {
 a:visited {
   color: #2191b3;
 }
+*/
