@@ -1,20 +1,17 @@
 {% extends "base.html" %}
-
 {% block content %}
-
-  {% if form.errors %}
-    <p class="error">Sorry, that's not a valid username or password</p>
-  {% endif %}
-
-  <form action="" method="post">
-    {% csrf_token %}
-    <label for="username">Notendanafn:</label>
-    <input type="text" name="username" value="" id="username">
-    <label for="password">Lykilorð:</label>
-    <input type="password" name="password" value="" id="password">
-
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="/" />
-  </form>
-
+			<form action="" method="post">
+				{% csrf_token %}
+				<label>Notendanafn:
+					<input type="text" name="username" value="" id="username" placeholder="Jón Jónsson" maxlength="10" autofocus>
+				</label>
+				<label>Lykilorð:
+					<input type="password" name="password" value="" id="password" placeholder="abc123" maxlength="10">
+				</label>
+				<input type="submit" value="login">
+				<input type="hidden" name="next" value="/">
+			</form>
+	{% if form.errors %}
+			<p class="error">Innskráning mistókst, ertu viss um að notendanafnið og lykilorðið sé rétt?</p>
+	{% endif %}
 {% endblock %}

@@ -1,25 +1,62 @@
+/*Normalize*/
 * {margin: 0; padding: 0; box-sizing: border-box;}
-body {font: 16px/1.5rem sans-serif;}
-.wrapper {max-width: 1200px; width: 100%; margin: 0 auto;}
-h1,h2,h3,h4,h5,h6,p,li,iframe {margin: 1rem;}
-h1 {font-size: 2rem;}
-h2,h3 {font-size: 1.6rem;}
+body {font: 16px/1.5rem sans-serif; background: #2371e5;}
+.wrapper {
+	max-width: 1200px; width: 100%; margin: 0.5rem auto; 
+	border: solid black 1px; border-radius: 15px; 
+	background: rgba(255,255,255,0.5);
+	overflow: hidden;
+}
+.content {width: 50%; margin: 1rem auto; padding: auto 0.5rem; border: solid black 1px; background: white; vertical-align: middle;}
+.login {background: white;}
+/*FOR TESTING PURPOSES
+header, main, section, footer, .login, .bgColor, h1, footer p {border: solid black 1px;}
+*/
+/*Spacing and sizing*/
+h1,h2,h3,h4,h5,h6,p,li,form,.login,iframe,.bgColor {margin: 1rem;}
+h1,h2,h3,h4,h5,h6,p,a {word-wrap: break-word;}
+h1 {font-size: 2.5rem;}
+h2 {font-size: 2rem;}
+h3 {font-size: 1.6rem;}
 h4 {font-size: 1.2rem}
 h5,h6,p {font-size: 1rem}
 
-a {text-decoration: none; color: #2062b8;}
-.login {float: right;}
+header, footer {width: 50%; margin: 0 auto;}
+h1, main section {margin: 1rem auto;}
+h1, footer p {text-align: center;}
+main {margin: 0 auto; width: 100%;}
+
+/*Links*/
+a {text-decoration: none; color: #2371e5;}
+/*a:visited {color: #2191b3;}*/
+a:hover {color: #df0000;}
+
+/*Login*/
+.login {width: auto; float: right; display: inline-block;}
 .login a {padding: 0 0.25rem;}
 .login a:first-child {border-right: solid black 1px;}
 
-iframe.fbLike {border:none; overflow:hidden; height:21px;}
+/*Facebook like button*/
+iframe.fbLike {xborder: none; overflow: hidden; width: 5rem; height: 1.5rem; float: left;}
+footer, iframe {xborder: solid black 1px;}
 
-/*
-a:link {
-  color: #2062b8;
+/*Background color chooser*/
+.bgColor {
+	cursor: pointer;
+	border: solid black 1px; border-radius: 15px; 
+	width: 1rem; height: 1rem; 
+	float: right; position: fixed; top: 0; right: 0; 
+	background: #2371e5;
 }
 
-a:visited {
-  color: #2191b3;
+.bgColor:hover {background: #df0000;}
+
+/*Media queries*/
+@media only screen and (max-width: 825px) {
+	.content {width: 100%;}
+	.login {background: none;}
 }
-*/
+
+@media only screen and (max-width: 422px), (max-device-width : 400px) {
+	header, footer {width: 100%;}
+}

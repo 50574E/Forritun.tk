@@ -1,16 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class='login'>
-		<a href="/accounts/login">Innskráning</a>
-		<a href="/accounts/register">Nýskráning</a>
-	</div>
-	<h1>Síðan er í vinnslu</h1>
-	{% block loggedIn %}{% endblock %}
-	<p>Forritun.tk er vefsíða fyrir reynda og óreynda forritara.</p>
-	<p>Vefsíðan tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama að tala um forritun og verkefni.<p>
-	<p>Verkefnið er <a href="https://github.com/50574E/Forritun.tk">open-source</a> svo ef þú vilt hjálpa til er það velkomið.</p>
-	<p>Allar ábendingar má senda á <a href="mailto:forritun.tk@gmail.com">forritun.tk@gmail.com</a></p>
-	<p>Við erum búnir að setja upp <a href="http://discourse.forritun.tk">Discourse!</a></p>
-	<iframe class="fbLike" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fforritun.tk&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			<section>
+				<h2>Síðan er í vinnslu</h2>
+				{% block loggedIn %}{% endblock %}
+				<p>Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.</p>
+				<p>Vefsíðan tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama til að tala um forritun og verkefni.</p>
+				<p>Verkefnið er <a href="https://github.com/50574E/Forritun.tk">open-source</a> svo ef þú vilt hjálpa til er það velkomið.</p>
+				<p>Allar ábendingar má senda á <a href="mailto:forritun.tk@gmail.com">forritun.tk@gmail.com</a>.</p>
+				<p>Við erum búnir að setja upp <a href="http://discourse.forritun.tk">Discourse</a> spjallborð fyrir umræður.</p>
+			</section>
 {% endblock %}

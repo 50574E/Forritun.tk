@@ -1,21 +1,42 @@
 <!doctype html>
-<html>
+<html lang="is">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Forritun.tk er vefsíða fyrir reynda og óreynda forritara.">
-	<meta name="keywords" content="Forritun">
+	<meta name="description" content="Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.">
+	<meta name="keywords" content="Forritun.tk,Forritun,forritunarmál,tölvunarfræði">
 	<meta property="og:title" content="Forritun.tk">
 	<meta property="og:site_name" content="Forritun.tk">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="http://forritun.tk">
-	<meta property="og:description" content="Forritun.tk er vefsíða fyrir reynda og óreynda forritara.">
+	<meta property="og:description" content="Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.">
 	<title>Forritun.tk</title>
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 </head>
 <body>
 	<div class="wrapper">
-	{% block content %}{% endblock %}
+		<!--
+		<div class='login'>
+			<a href="/accounts/login">Innskráning</a>
+			<a href="/accounts/register">Nýskráning</a>
+		</div>
+		-->
+	<div class="content">		
+		<header>
+			<h1>Forritun.tk</h1>
+		</header>
+
+		<main>{% block content %}{% endblock %}		</main>
+		
+		<iframe class="fbLike" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fforritun.tk&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+		
+		<footer>
+			<p>&copy; 2015 - All rights reserved</p>
+		</footer>
 	</div>
+	</div>
+	<div class="bgColor"></div>
+	<script src="{{ STATIC_URL }}jquery-1.11.0.min.js"></script>
+	<script src="{{ STATIC_URL }}bgColor.js"></script>
 </body>
 </html>
