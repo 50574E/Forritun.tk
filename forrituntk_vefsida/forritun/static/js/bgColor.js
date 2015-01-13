@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var isRed = false;
-	var c1 = "#2371e5";
+	var c1 = "#253a5f";
 	var c2 = "#df0000";
 	$(".bgColor").click(function(){
 		isRed = !isRed;
