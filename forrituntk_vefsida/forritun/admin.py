@@ -1,3 +1,16 @@
 from django.contrib import admin
+from forritun.models import ProgrammingLanguage, Resource
 
-# Register your models here.
+
+class ResourceInline(admin.TabularInline):
+    model = Resource
+    extra = 3
+    readonly_fields = ['date_created', 'date_modified']
+
+
+class ProgrammingLanguageAdmin(admin.ModelAdmin):
+    readonly_fields = ['date_created', 'date_modified']
+    inlines = [ResourceInline]
+
+
+admin.site.register(ProgrammingLanguage, ProgrammingLanguageAdmin)
