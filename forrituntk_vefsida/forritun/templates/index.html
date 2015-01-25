@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-			<section>
-				<h2>Síðan er í vinnslu</h2>
-				{% block loggedIn %}{% endblock %}
-				<p>Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.</p>
-				<p>Vefsíðan tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama til að tala um forritun og verkefni.</p>
-				<p>Verkefnið er <a href="https://github.com/50574E/Forritun.tk">open-source</a> svo ef þú vilt hjálpa til er það velkomið.</p>
-				<p>Allar ábendingar má senda á <a href="mailto:forritun.tk@gmail.com">forritun.tk@gmail.com</a>.</p>
-				<p>Við erum búnir að setja upp <a href="http://discourse.forritun.tk">Discourse</a> spjallborð fyrir umræður.</p>
-			</section>
+	<section>
+		<h2>Síðan er í vinnslu</h2>
+		{% block loggedIn %}{% endblock %}
+		<p>Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.</p>
+		<p>Vefsíðan tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama til að tala um forritun og verkefni.</p>
+		<p>Verkefnið er <a href="https://github.com/50574E/Forritun.tk">open-source</a> svo ef þú vilt hjálpa til er það velkomið.</p>
+		<p>Allar ábendingar má senda á <a href="mailto:forritun.tk@gmail.com">forritun.tk@gmail.com</a>.</p>
+		<p>Við erum búnir að setja upp <a href="http://discourse.forritun.tk">Discourse</a> spjallborð fyrir umræður.</p>
+		<a href="{% url 'language-list' %}">Öll forritunarmál</a>
+		<p>Nýjustu 5:</p>
+		<ul>
+			{% for language in languages %}
+			<li><a href="{% url 'resource-list' language.id language.slug %}">{{ language.name }}</a></li>
+			{% endfor %}
+		</ul>
+	</section>
 {% endblock %}

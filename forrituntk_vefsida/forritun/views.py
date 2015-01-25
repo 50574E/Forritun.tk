@@ -3,13 +3,17 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.contrib import auth
 from django.template import RequestContext
+from django.views.generic import ListView
+from forritun.models import ProgrammingLanguage, Resource
 
 
 def index(request):
+    languages = ProgrammingLanguage.objects.order_by('-date_created')[:5]
+    context = {'languages': languages}
     if request.user.is_authenticated():
-        return render(request, 'loggedIn.html')
+        return render(request, 'loggedIn.html', context)
     else:
-        return render(request, 'index.html')
+        return render(request, 'index.html', context)
 
 
 def login_view(request):
@@ -41,3 +45,16 @@ def register(request):
         form = UserCreationForm()
     c = {'form': form}
     return render_to_response("registration/register.html", c, context_instance=RequestContext(request))
+
+
+class ProgrammingLanguageListView(ListView):
+    model = ProgrammingLanguage
+    template_name = 'languages.html'
+
+
+class ResourceListView(ListView):
+    model = Resource
+    template_name = 'resourceList.html'
+
+    def get_queryset(self):
+        return Resource.objects.filter(language__id=self.kwargs['id'])

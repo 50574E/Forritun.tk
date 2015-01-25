@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 
 class ProgrammingLanguage(models.Model):
@@ -6,6 +7,11 @@ class ProgrammingLanguage(models.Model):
     description = models.TextField()
     date_created = models.DateTimeField('date created', auto_now_add=True, editable=False)
     date_modified = models.DateTimeField('date modified', auto_now=True)
+    slug = models.SlugField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(ProgrammingLanguage, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -18,6 +24,11 @@ class Resource(models.Model):
     description = models.TextField()
     date_created = models.DateTimeField('date created', auto_now_add=True, editable=False)
     date_modified = models.DateTimeField('date modified', auto_now=True)
+    slug = models.SlugField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Resource, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.link
