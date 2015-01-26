@@ -1,17 +1,17 @@
 import base64
 import hmac
 import hashlib
-import urllib
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.conf import settings
 
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, unquote, urlencode
 
 """
 Taken from https://meta.discourse.org/t/sso-example-for-django/14258
 """
+
 
 @login_required
 def sso(request):
@@ -21,11 +21,11 @@ def sso(request):
     if None in [payload, signature]:
         return HttpResponseBadRequest('No SSO payload or signature. Please contact support if this problem persists.')
 
-    ## Validate the payload
+    # Validate the payload
 
     try:
-        payload = urllib.unquote(payload)
-        decoded = base64.decodestring(payload)
+        payload = unquote(payload)
+        decoded = base64.decodebytes(payload)
         assert 'nonce' in decoded
         assert len(payload) > 0
     except AssertionError:
@@ -38,7 +38,7 @@ def sso(request):
     if this_signature != signature:
         return HttpResponseBadRequest('Invalid payload. Please contact support if this problem persists.')
 
-    ## Build the return payload
+    # Build the return payload
 
     qs = parse_qs(decoded)
     params = {
@@ -48,11 +48,11 @@ def sso(request):
         'username': request.user.username,
     }
 
-    return_payload = base64.encodestring(urllib.urlencode(params))
+    return_payload = base64.encodebytes(urlencode(params))
     h = hmac.new(key, return_payload, digestmod=hashlib.sha256)
-    query_string = urllib.urlencode({'sso': return_payload, 'sig': h.hexdigest()})
+    query_string = urlencode({'sso': return_payload, 'sig': h.hexdigest()})
 
-    ## Redirect back to Discourse
+    # Redirect back to Discourse
 
     url = '%s/session/sso_login' % settings.DISCOURSE_BASE_URL
     return HttpResponseRedirect('%s?%s' % (url, query_string))
