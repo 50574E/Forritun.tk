@@ -19,3 +19,6 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+DISCOURSE_BASE_URL = 'http://discourse.forritun.tk'
+DISCOURSE_SSO_SECRET = os.environ['DISCOURSE_SSO_SECRET']
