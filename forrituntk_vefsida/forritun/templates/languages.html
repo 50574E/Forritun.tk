@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
+{% block header %}
+Forritunarmál
+{% endblock %}
+
 {% block content %}
-    <h2>Forritunarmál</h2>
     <ul>
     {% for language in object_list %}
         <li><a href="{% url 'resource-list' language.id language.slug %}">{{ language.name }}</a> - {{ language.description }}</li>

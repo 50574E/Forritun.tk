@@ -66,5 +66,13 @@ class ResourceListView(ListView):
     model = Resource
     template_name = 'resourceList.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ResourceListView, self).get_context_data(**kwargs)
+        try:
+            context['name'] = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
+        except ProgrammingLanguage.DoesNotExist:
+            context['name'] = "Forritunarmál"
+        return context
+
     def get_queryset(self):
         return Resource.objects.filter(language__id=self.kwargs['id'])

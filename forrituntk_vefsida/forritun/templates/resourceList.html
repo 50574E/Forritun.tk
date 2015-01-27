@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
+{% block header %}
+{{ name }}
+{% endblock %}
+
 {% block content %}
-    <h2>Forritunarmál</h2>
     <ul>
     {% for resource in object_list %}
         <li><a target="_blank" href="{{ resource.link }}">{{ resource.name }}</a> - {{ resource.description }}</li>

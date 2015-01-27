@@ -38,7 +38,7 @@
 		</nav>
 		<div class="content">
 			<header>
-				<h1><a href="{% url 'home' %}">Forritun.tk</a></h1>
+				<h2>{% block header %}{% endblock %}</h2>
 			</header>
 
 			<main>{% block content %}{% endblock %}		</main>

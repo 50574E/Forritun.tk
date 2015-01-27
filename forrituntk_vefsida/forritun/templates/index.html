@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
+{% block header %}
+Síðan er í vinnslu
+{% endblock %}
+
 {% block content %}
 	<section>
-		<h2>Síðan er í vinnslu</h2>
 		{% block loggedIn %}{% endblock %}
 		<p>Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.</p>
 		<p>Vefsíðan tekur saman þær upplýsingar sem þarf til að koma fólki af stað í forritun auk þess að vera skemmtilegur staður fyrir áhugasama til að tala um forritun og verkefni.</p>
