@@ -7,7 +7,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 INSTALLED_APPS += (
-    # when needed
+    'debug_toolbar',
 )
 
 DATABASES = {
