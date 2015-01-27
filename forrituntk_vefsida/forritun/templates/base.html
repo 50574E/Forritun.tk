@@ -11,32 +11,44 @@
 	<meta property="og:url" content="http://forritun.tk">
 	<meta property="og:description" content="Forritun.tk er vefsíða fyrir reynda jafnt sem óreynda forritara.">
 	<title>Forritun.tk</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 </head>
 <body>
 	<div class="wrapper">
-		<div class='login'>
-			{% if user.is_authenticated %}
-				{{ user.username }}
-				<a href="/accounts/logout">Útskráning</a>
-			{% else %}
-				<a href="/accounts/login">Innskráning</a>
-				<a href="/accounts/register">Nýskráning</a>
-			{% endif %}
-		</div>
-	<div class="content">		
-		<header>
-			<h1><a href="{% url 'home' %}">Forritun.tk</a></h1>
-		</header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a class="navbar-brand" href="{% url 'home' %}">Forritun.tk</a></li>
+						<li><a href="{% url 'language-list' %}">Forritunarmál</a></li>
+						<li><a href="http://discourse.forritun.tk">Spjallborð</a></li>
+					</ul>
+					<div class="nav navbar-nav navbar-right">
+						{% if user.is_authenticated %}
+							<li><p class="navbar-text">{{ user.username }}</p></li>
+							<li><a href="/accounts/logout">Útskráning</a></li>
+						{% else %}
+							<li><a href="/accounts/login">Innskráning</a></li>
+							<li><a href="/accounts/register">Nýskráning</a></li>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="content">
+			<header>
+				<h1><a href="{% url 'home' %}">Forritun.tk</a></h1>
+			</header>
 
-		<main>{% block content %}{% endblock %}		</main>
-		
-		<iframe class="fbLike" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fforritun.tk&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-		
-		<footer>
-			<p>&copy; 2015 - All rights reserved</p>
-		</footer>
-	</div>
+			<main>{% block content %}{% endblock %}		</main>
+
+			<iframe class="fbLike" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fforritun.tk&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
+			<footer>
+				<p>&copy; 2015 - All rights reserved</p>
+			</footer>
+		</div>
 	</div>
 	<div class="bgColor"></div>
 	<script src="{{ STATIC_URL }}js/jquery-1.11.0.min.js"></script>
