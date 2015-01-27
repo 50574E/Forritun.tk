@@ -20,9 +20,15 @@
 			<div class="container-fluid">
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a class="navbar-brand" href="{% url 'home' %}">Forritun.tk</a></li>
-						<li><a href="{% url 'language-list' %}">Forritunarmál</a></li>
-						<li><a href="http://discourse.forritun.tk">Spjallborð</a></li>
+						<li class="{% if active_navigation == 'home' %}active{% endif %}">
+							<a class="navbar-brand" href="{% url 'home' %}">Forritun.tk</a>
+						</li>
+						<li class="{% if active_navigation == 'language-list' %}active{% endif %}">
+							<a href="{% url 'language-list' %}">Forritunarmál</a>
+						</li>
+						<li class="{% if active_navigation == 'discourse' %}active{% endif %}">
+							<a href="http://discourse.forritun.tk">Spjallborð</a>
+						</li>
 					</ul>
 					<div class="nav navbar-nav navbar-right">
 						{% if user.is_authenticated %}

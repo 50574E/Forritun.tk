@@ -39,6 +39,10 @@ h1,h2,h3,h4,h5,h6,p,li,form,.login,iframe,.bgColor {
 	margin: 1rem;
 }
 
+nav li {
+	margin: 0;
+}
+
 h1,h2,h3,h4,h5,h6,p,a {
 	word-wrap: break-word;
 }

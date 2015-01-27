@@ -13,7 +13,7 @@ from forritun.models import ProgrammingLanguage, Resource
 
 def index(request):
     languages = ProgrammingLanguage.objects.order_by('-date_created')[:5]
-    context = {'languages': languages}
+    context = {'languages': languages, 'active_navigation': "home"}
     if request.user.is_authenticated():
         return render(request, 'loggedIn.html', context)
     else:
@@ -61,6 +61,11 @@ class ProgrammingLanguageListView(ListView):
     model = ProgrammingLanguage
     template_name = 'languages.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProgrammingLanguageListView, self).get_context_data(**kwargs)
+        context['active_navigation'] = "language-list"
+        return context
+
 
 class ResourceListView(ListView):
     model = Resource
@@ -68,6 +73,7 @@ class ResourceListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ResourceListView, self).get_context_data(**kwargs)
+        context['active_navigation'] = "language-list"
         try:
             context['name'] = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
         except ProgrammingLanguage.DoesNotExist:
