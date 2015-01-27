@@ -12,8 +12,7 @@ Síðan er í vinnslu
 		<p>Verkefnið er <a href="https://github.com/50574E/Forritun.tk">open-source</a> svo ef þú vilt hjálpa til er það velkomið.</p>
 		<p>Allar ábendingar má senda á <a href="mailto:forritun.tk@gmail.com">forritun.tk@gmail.com</a>.</p>
 		<p>Við erum búnir að setja upp <a href="http://discourse.forritun.tk">Discourse</a> spjallborð fyrir umræður.</p>
-		<a href="{% url 'language-list' %}">Öll forritunarmál</a>
-		<p>Nýjustu 5:</p>
+		<p>Nýjustu 5 forritunarmál:</p>
 		<ul>
 			{% for language in languages %}
 			<li><a href="{% url 'resource-list' language.id language.slug %}">{{ language.name }}</a></li>
