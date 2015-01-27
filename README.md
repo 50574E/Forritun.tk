@@ -10,7 +10,7 @@ Liðlagningar
 Uppsetning
 ==========
 
-1. pip install -r requirements.txt
+1. pip install -r requirements-dev.txt
 2. Settu upp Postgresql grunn sem heitir forrituntk með notendanafni forrituntk og lykilorði forrituntk.
 Þessu má líka breyta í forrituntk.local.
 3. python manage.py syncdb

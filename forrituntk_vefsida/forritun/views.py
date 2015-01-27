@@ -37,14 +37,20 @@ def logout_view(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = EmailUserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
             return HttpResponseRedirect("/accounts/login")
     else:
-        form = UserCreationForm()
+        form = EmailUserCreationForm()
     c = {'form': form}
     return render_to_response("registration/register.html", c, context_instance=RequestContext(request))
+
+
+class EmailUserCreationForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(EmailUserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['email'].required = True
 
 
 class ProgrammingLanguageListView(ListView):

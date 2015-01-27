@@ -15,12 +15,15 @@
 </head>
 <body>
 	<div class="wrapper">
-		<!--
 		<div class='login'>
-			<a href="/accounts/login">Innskráning</a>
-			<a href="/accounts/register">Nýskráning</a>
+			{% if user.is_authenticated %}
+				{{ user.username }}
+				<a href="/accounts/logout">Útskráning</a>
+			{% else %}
+				<a href="/accounts/login">Innskráning</a>
+				<a href="/accounts/register">Nýskráning</a>
+			{% endif %}
 		</div>
-		-->
 	<div class="content">		
 		<header>
 			<h1><a href="{% url 'home' %}">Forritun.tk</a></h1>
