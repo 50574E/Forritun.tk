@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.admin import forms as admin_forms
+from django.contrib.auth import views
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -16,6 +18,10 @@ def index(request):
         return render(request, 'loggedIn.html', context)
     else:
         return render(request, 'index.html', context)
+
+
+def login_view(request):
+    return views.login(request, template_name='registration/login.html', authentication_form=admin_forms.AuthenticationForm)
 
 
 def logout_view(request):
