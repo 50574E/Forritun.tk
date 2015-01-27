@@ -1,4 +1,6 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.contrib import auth
@@ -16,19 +18,6 @@ def index(request):
         return render(request, 'index.html', context)
 
 
-def login_view(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    user = auth.authenticate(username=username, password=password)
-    if user is not None and user.is_active:
-        # Tókst að skrá inn
-        auth.login(request, user)
-        return HttpResponseRedirect("/")
-    else:
-        # Tekst ekki að skrá inn
-        return HttpResponseRedirect("/")
-
-
 def logout_view(request):
     auth.logout(request)
 
@@ -39,7 +28,7 @@ def register(request):
     if request.method == 'POST':
         form = EmailUserCreationForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
+            form.save()
             return HttpResponseRedirect("/accounts/login")
     else:
         form = EmailUserCreationForm()
@@ -48,9 +37,18 @@ def register(request):
 
 
 class EmailUserCreationForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super(EmailUserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['email'].required = True
+    email = forms.EmailField(max_length=75)
+
+    class Meta:
+        model = User
+        fields = ("email",)
+
+    def save(self, commit=True):
+        user = super(EmailUserCreationForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user
 
 
 class ProgrammingLanguageListView(ListView):
