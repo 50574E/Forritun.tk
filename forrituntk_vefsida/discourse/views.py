@@ -21,7 +21,7 @@ def sso(request):
     # Validate the payload
     validated = discourse_sso.validate(payload=payload, sig=signature)
 
-    if validated:
+    if not validated:
         return HttpResponseBadRequest('Invalid payload. Please contact support if this problem persists.')
 
     # Build the return payload

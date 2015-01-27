@@ -35,10 +35,11 @@ class DiscourseSSO:
                 string : Nonce extracted from payload
         """
         payload = b64decode(urllib.parse.unquote(payload)).decode()
-        d = dict(nonce.split("=") for nonce in payload.split(' '))
+        qs = urllib.parse.parse_qs(payload)
+        nounce = qs['nonce'][0]
 
-        if 'nonce' in d and d['nonce'] != '':
-            return d['nonce']
+        if nounce is not None and nounce != '':
+            return nounce
         else:
             raise Exception("Nonce could not be found in payload")
 
@@ -68,6 +69,5 @@ class DiscourseSSO:
         payload = urllib.parse.urlencode(credentials)
         payload = b64encode(payload.encode())
         sig = hmac.new(self.__secret_key.encode(), payload, sha256).hexdigest()
-        print(sig)
 
         return urllib.parse.urlencode({'sso': payload, 'sig': sig})
