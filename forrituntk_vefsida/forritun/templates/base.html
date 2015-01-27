@@ -27,10 +27,10 @@
 					<div class="nav navbar-nav navbar-right">
 						{% if user.is_authenticated %}
 							<li><p class="navbar-text">{{ user.username }}</p></li>
-							<li><a href="/accounts/logout">Útskráning</a></li>
+							<li><a href="{% url 'logout-view' %}">Útskráning</a></li>
 						{% else %}
-							<li><a href="/accounts/login">Innskráning</a></li>
-							<li><a href="/accounts/register">Nýskráning</a></li>
+							<li><a href="{% url 'login-view' %}">Innskráning</a></li>
+							<li><a href="{% url 'register-view' %}">Nýskráning</a></li>
 						{% endif %}
 					</div>
 				</div>
