@@ -8,6 +8,7 @@ from django.shortcuts import render, render_to_response
 from django.contrib import auth
 from django.template import RequestContext
 from django.views.generic import ListView
+from taggit.models import Tag
 from forritun.models import ProgrammingLanguage, Resource
 
 
@@ -76,6 +77,7 @@ class ResourceListView(ListView):
         context['active_navigation'] = "language-list"
         try:
             context['name'] = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
+            context['tags'] = Tag.objects.filter(resource__language__id=self.kwargs['id']).distinct()
         except ProgrammingLanguage.DoesNotExist:
             context['name'] = "Forritunarmál"
         return context

@@ -5,9 +5,24 @@
 {% endblock %}
 
 {% block content %}
+    <p>Tags:</p>
+    <ul>
+    {% for tag in tags %}
+        <li>{{ tag.name }}</li>
+    {% empty %}
+        <li>Engir tög hafa verið sett inn.</li>
+    {% endfor %}
+    </ul>
+    <h1>Linkar</h1>
     <ul>
     {% for resource in object_list %}
-        <li><a target="_blank" href="{{ resource.link }}">{{ resource.name }}</a> - {{ resource.description }}</li>
+        <li><a target="_blank" href="{{ resource.link }}">{{ resource.name }}</a> - {{ resource.description }}
+            <small>
+                {% for tag in resource.tags.names %}
+                    [{{ tag }}]
+                {% endfor %}
+            </small>
+        </li>
     {% empty %}
         <li>Engir tenglar hafa verið sett inn.</li>
     {% endfor %}
