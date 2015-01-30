@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    <!--
     <p>Tags:</p>
     <ul>
     {% for tag in tags %}
@@ -14,6 +15,7 @@
     {% endfor %}
     </ul>
     <h1>Linkar</h1>
+    -->
     <ul>
     {% for resource in object_list %}
         <li><a target="_blank" href="{{ resource.link }}">{{ resource.name }}</a> - {{ resource.description }}
