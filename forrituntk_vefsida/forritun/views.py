@@ -78,15 +78,33 @@ class ResourceListView(ListView):
         try:
             if self.kwargs['id'] == "0":
                 context['name'] = "Öll mál"
+                context['language_id'] = 0
+                context['language_slug'] = "oll"
             else:
-                context['name'] = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
+                language = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
+                context['name'] = language.name
+                context['language_id'] = language.id
+                context['language_slug'] = language.slug
+                if self.kwargs['tags'] == "":
+                    context['filter'] = None
+                else:
+                    context['filter'] = self.kwargs['tags']
+                    filter_tags_slugs = context['filter'].split('+')
+                    context['filter_tags'] = Tag.objects.filter(slug__in=filter_tags_slugs).distinct()
                 context['tags'] = Tag.objects.filter(resource__language__id=self.kwargs['id']).distinct()
         except ProgrammingLanguage.DoesNotExist:
             context['name'] = "Forritunarmál"
         return context
 
     def get_queryset(self):
-        if self.kwargs['id'] == "0":
-            return Resource.objects.all()
-        else:
-            return Resource.objects.filter(language__id=self.kwargs['id'])
+        objects = Resource.objects.all()
+        if self.kwargs['id'] != "0":
+            objects = objects.filter(language__id=self.kwargs['id'])
+
+        if self.kwargs['tags'] is not None and self.kwargs['tags'] != "":
+            tags = self.kwargs['tags'].split('+')
+            for tag in tags:
+                print(tag)
+                objects = objects.filter(tags__slug__in=[tag])
+
+        return objects

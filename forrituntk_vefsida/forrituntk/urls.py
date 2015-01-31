@@ -10,6 +10,6 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$',  'forritun.views.logout_view', name='logout-view'),
     url(r'^accounts/register/$',  'forritun.views.register', name='register-view'),
     url(r'^languages/$', ProgrammingLanguageListView.as_view(), name='language-list'),
-    url(r'^languages/(?P<id>\d+)/(?P<slug>[-\w\d]+)/$', ResourceListView.as_view(), name='resource-list'),
+    url(r'^languages/(?P<id>\d+)/(?P<slug>[-\w\d]*)/(?P<tags>[-+\w\d]*)?$', ResourceListView.as_view(), name='resource-list'),
     url(r'^discourse/sso$', views.sso),
 )

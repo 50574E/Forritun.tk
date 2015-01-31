@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'taggit',
     'forritun',
+    'forritun.templatetags',
     'discourse',
 )
 

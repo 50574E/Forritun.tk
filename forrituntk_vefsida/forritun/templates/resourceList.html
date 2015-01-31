@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load forritun_extras %}
+
 {% block header %}
 {{ name }}
 {% endblock %}
@@ -16,12 +18,30 @@
     </ul>
     <h1>Linkar</h1>
     -->
+
+    {% if filter_tags %}
+    <p>Filter:
+        {% for tag in filter_tags %}
+            [<a href="{% url 'resource-list' language_id language_slug filter|remove_tag:tag.slug %}">{{ tag.name }}</a>]
+        {% endfor %}
+        <a href="{% url 'resource-list' language_id language_slug %}">Hreinsa alla filtera</a>
+    </p>
+    {% endif %}
+
     <ul>
     {% for resource in object_list %}
         <li><a target="_blank" href="{{ resource.link }}">{{ resource.name }}</a> - {{ resource.description }}
             <small>
-                {% for tag in resource.tags.names %}
-                    [{{ tag }}]
+                {% for tag in resource.tags.all %}
+                    {% if tag.slug in filter %}
+                    [<a href="{% url 'resource-list' language_id language_slug filter %}">{{ tag.name }}</a>]
+                    {% else %}
+                        {% if filter %}
+                        [<a href="{% url 'resource-list' language_id language_slug filter|add:'+'|add:tag.slug %}">{{ tag.name }}</a>]
+                        {% else %}
+                        [<a href="{% url 'resource-list' language_id language_slug tag.slug %}">{{ tag.name }}</a>]
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
             </small>
         </li>
