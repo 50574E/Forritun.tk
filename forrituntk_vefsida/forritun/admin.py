@@ -11,6 +11,7 @@ class ResourceInline(admin.TabularInline):
 class ProgrammingLanguageAdmin(admin.ModelAdmin):
     readonly_fields = ['date_created', 'date_modified', 'slug']
     inlines = [ResourceInline]
+    list_filter = ['date_created']
 
 
 admin.site.register(ProgrammingLanguage, ProgrammingLanguageAdmin)

@@ -6,6 +6,7 @@ Forritunarmál
 
 {% block content %}
     <ul>
+        <li><a href="{% url 'resource-list' 0 'oll' %}">Öll mál</a></li>
     {% for language in object_list %}
         <li><a href="{% url 'resource-list' language.id language.slug %}">{{ language.name }}</a> - {{ language.description }}</li>
     {% empty %}

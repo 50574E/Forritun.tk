@@ -76,11 +76,17 @@ class ResourceListView(ListView):
         context = super(ResourceListView, self).get_context_data(**kwargs)
         context['active_navigation'] = "language-list"
         try:
-            context['name'] = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
-            context['tags'] = Tag.objects.filter(resource__language__id=self.kwargs['id']).distinct()
+            if self.kwargs['id'] == "0":
+                context['name'] = "Öll mál"
+            else:
+                context['name'] = ProgrammingLanguage.objects.get(id=self.kwargs['id'])
+                context['tags'] = Tag.objects.filter(resource__language__id=self.kwargs['id']).distinct()
         except ProgrammingLanguage.DoesNotExist:
             context['name'] = "Forritunarmál"
         return context
 
     def get_queryset(self):
-        return Resource.objects.filter(language__id=self.kwargs['id'])
+        if self.kwargs['id'] == "0":
+            return Resource.objects.all()
+        else:
+            return Resource.objects.filter(language__id=self.kwargs['id'])
