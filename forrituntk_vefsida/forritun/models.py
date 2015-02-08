@@ -1,6 +1,16 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.db import models
 from django.template.defaultfilters import slugify
 from taggit.managers import TaggableManager
+from taggit.models import GenericTaggedItemBase, TagBase
+
+
+class TagWithCategory(TagBase):
+    category = models.CharField(max_length=100)
+
+
+class TaggedWithCategory(GenericTaggedItemBase):
+    tag = models.ForeignKey(TagWithCategory, related_name="%(app_label)s_%(class)s_items")
 
 
 class ProgrammingLanguage(models.Model):
@@ -9,7 +19,7 @@ class ProgrammingLanguage(models.Model):
     date_created = models.DateTimeField('date created', auto_now_add=True, editable=False)
     date_modified = models.DateTimeField('date modified', auto_now=True)
     slug = models.SlugField()
-    tags = TaggableManager()
+    tags = TaggableManager(through=TaggedWithCategory)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -27,7 +37,7 @@ class Resource(models.Model):
     date_created = models.DateTimeField('date created', auto_now_add=True, editable=False)
     date_modified = models.DateTimeField('date modified', auto_now=True)
     slug = models.SlugField()
-    tags = TaggableManager()
+    tags = TaggableManager(through=TaggedWithCategory)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

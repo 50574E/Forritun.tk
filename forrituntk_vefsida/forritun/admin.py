@@ -1,5 +1,6 @@
 from django.contrib import admin
-from forritun.models import ProgrammingLanguage, Resource
+from taggit.models import Tag
+from forritun.models import ProgrammingLanguage, Resource, TagWithCategory, TaggedWithCategory
 
 
 class ResourceInline(admin.TabularInline):
@@ -14,4 +15,19 @@ class ProgrammingLanguageAdmin(admin.ModelAdmin):
     list_filter = ['date_created']
 
 
+class TaggedItemInline(admin.StackedInline):
+    model = TaggedWithCategory
+
+
+class TagAdmin(admin.ModelAdmin):
+    inlines = [
+        TaggedItemInline
+    ]
+    list_display = ["name", "slug", "category"]
+    ordering = ["name", "slug", "category"]
+    search_fields = ["name"]
+    prepopulated_fields = {"slug": ["name"]}
+
 admin.site.register(ProgrammingLanguage, ProgrammingLanguageAdmin)
+admin.site.unregister(Tag)
+admin.site.register(TagWithCategory, TagAdmin)

@@ -8,8 +8,7 @@ from django.shortcuts import render, render_to_response
 from django.contrib import auth
 from django.template import RequestContext
 from django.views.generic import ListView
-from taggit.models import Tag
-from forritun.models import ProgrammingLanguage, Resource
+from forritun.models import ProgrammingLanguage, Resource, TagWithCategory
 
 
 def index(request):
@@ -90,8 +89,8 @@ class ResourceListView(ListView):
                 else:
                     context['filter'] = self.kwargs['tags']
                     filter_tags_slugs = context['filter'].split('+')
-                    context['filter_tags'] = Tag.objects.filter(slug__in=filter_tags_slugs).distinct()
-                context['tags'] = Tag.objects.filter(resource__language__id=self.kwargs['id']).distinct()
+                    context['filter_tags'] = TagWithCategory.objects.filter(slug__in=filter_tags_slugs).distinct()
+                context['tags'] = TagWithCategory.objects.filter(resource__language__id=self.kwargs['id']).distinct()
         except ProgrammingLanguage.DoesNotExist:
             context['name'] = "Forritunarmál"
         return context
@@ -104,7 +103,6 @@ class ResourceListView(ListView):
         if self.kwargs['tags'] is not None and self.kwargs['tags'] != "":
             tags = self.kwargs['tags'].split('+')
             for tag in tags:
-                print(tag)
                 objects = objects.filter(tags__slug__in=[tag])
 
         return objects
